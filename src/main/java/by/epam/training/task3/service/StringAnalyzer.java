@@ -9,8 +9,19 @@ import java.util.List;
 public final class StringAnalyzer {
     private List<Lexeme> lexemes = new ArrayList<>();
     private int position = 0;
+    private static StringAnalyzer stringAnalyzer;
 
-    public List<Lexeme> lexemeAnalyze(String expressionsText) {
+    private StringAnalyzer() {
+    }
+
+    public static List<Lexeme> analyze(String expressionsText) {
+        if (stringAnalyzer == null) {
+            stringAnalyzer = new StringAnalyzer();
+        }
+        return stringAnalyzer.lexemeAnalyze(expressionsText);
+    }
+
+    private List<Lexeme> lexemeAnalyze(String expressionsText) {
         while (position < expressionsText.length()) {
             char c = expressionsText.charAt(position);
             switch (c) {

@@ -10,10 +10,8 @@ public final class StringExpression {
 
     public static double calculate(String stringExpression) {
 
-        StringAnalyzer stringAnalyzer = new StringAnalyzer();
-        LexemeBuffer lexemeBuffer = new LexemeBuffer(stringAnalyzer.lexemeAnalyze(stringExpression));
-        CalculateExpression calculateExpression = new CalculateExpression();
+        LexemeBuffer lexemeBuffer = new LexemeBuffer(StringAnalyzer.analyze(stringExpression));
 
-        return calculateExpression.expression(lexemeBuffer);
+        return CalculateExpression.start(lexemeBuffer);
     }
 }

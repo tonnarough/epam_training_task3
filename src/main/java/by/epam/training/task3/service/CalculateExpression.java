@@ -5,8 +5,19 @@ import by.epam.training.task3.entity.LexemeBuffer;
 import by.epam.training.task3.entity.LexemeType;
 
 public final class CalculateExpression {
+    private static CalculateExpression calculateExpression;
 
-    public double expression(LexemeBuffer lexemeBuffer) {
+    private CalculateExpression() {
+    }
+
+    public static double start(LexemeBuffer lexemeBuffer){
+        if(calculateExpression == null){
+            calculateExpression = new CalculateExpression();
+        }
+        return calculateExpression.expression(lexemeBuffer);
+    }
+
+    private double expression(LexemeBuffer lexemeBuffer) {
         Lexeme lexeme = lexemeBuffer.next();
         if (lexeme.getLexemeType() == LexemeType.EOF) {
             return 0;
