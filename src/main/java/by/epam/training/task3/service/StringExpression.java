@@ -8,10 +8,12 @@ public final class StringExpression {
 
     }
 
-    public static int calculate(String stringExpression) {
+    public static double calculate(String stringExpression) {
+
         StringAnalyzer stringAnalyzer = new StringAnalyzer();
         LexemeBuffer lexemeBuffer = new LexemeBuffer(stringAnalyzer.lexemeAnalyze(stringExpression));
-        Parser parse = new Parser();
-        return parse.expression(lexemeBuffer);
+        CalculateExpression calculateExpression = new CalculateExpression();
+
+        return calculateExpression.expression(lexemeBuffer);
     }
 }

@@ -4,9 +4,9 @@ import by.epam.training.task3.entity.Lexeme;
 import by.epam.training.task3.entity.LexemeBuffer;
 import by.epam.training.task3.entity.LexemeType;
 
-public final class Parser {
+public final class CalculateExpression {
 
-    public int expression(LexemeBuffer lexemeBuffer) {
+    public double expression(LexemeBuffer lexemeBuffer) {
         Lexeme lexeme = lexemeBuffer.next();
         if (lexeme.getLexemeType() == LexemeType.EOF) {
             return 0;
@@ -16,8 +16,8 @@ public final class Parser {
         }
     }
 
-    private int plusminus(LexemeBuffer lexemeBuffer) {
-        int value = multdiv(lexemeBuffer);
+    private double plusminus(LexemeBuffer lexemeBuffer) {
+        double value = multdiv(lexemeBuffer);
         while (true) {
             Lexeme lexeme = lexemeBuffer.next();
             switch (lexeme.getLexemeType()) {
@@ -38,8 +38,8 @@ public final class Parser {
         }
     }
 
-    private int multdiv(LexemeBuffer lexemeBuffer) {
-        int value = factor(lexemeBuffer);
+    private double multdiv(LexemeBuffer lexemeBuffer) {
+        double value = factor(lexemeBuffer);
         while (true) {
             Lexeme lexeme = lexemeBuffer.next();
             switch (lexeme.getLexemeType()) {
@@ -62,11 +62,11 @@ public final class Parser {
         }
     }
 
-    private int factor(LexemeBuffer lexemeBuffer) {
+    private double factor(LexemeBuffer lexemeBuffer) {
         Lexeme lexeme = lexemeBuffer.next();
         switch (lexeme.getLexemeType()) {
             case OP_MINUS:
-                int value = factor(lexemeBuffer);
+                double value = factor(lexemeBuffer);
                 return -value;
             case NUMBER:
                 return Integer.parseInt(lexeme.getValue());
